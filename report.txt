@@ -1,0 +1,22 @@
+init module:
+	go mod init <module-name>
+
+use module locally, edit mod file:
+	go mod edit -replace <org-module-name>=../<local-name>
+
+to manually get external module:
+	go get <module-url>
+
+to automatically get imported external module:
+	go mod tidy
+
+to make unit test case, create file with postfix _test.go. The prefix of this file is the testing target package, run this command to run test case:
+	go test
+more details at: https://go.dev/doc/tutorial/add-a-test
+
+multi module: https://go.dev/doc/tutorial/workspaces
+
+Learned:
+    - Go syntax, data structure
+    - How to work with modules, error handler, write go test cases/test command
+
