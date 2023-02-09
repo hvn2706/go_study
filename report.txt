@@ -19,4 +19,5 @@ multi module: https://go.dev/doc/tutorial/workspaces
 Learned:
     - Go syntax, data structure
     - How to work with modules, error handler, write go test cases/test command
+    - Demo with go web framework
 

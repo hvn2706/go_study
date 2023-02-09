@@ -1,1 +1,12 @@
-2023/02/08 15:58:38 logger.go:24: LogFile : ../log/log.txt
+2023/02/10 01:24:44 logger.go:24: LogFile : ../log/log.txt
+[receiveEditAlbum] 2023/02/10 01:25:47 receive.go:63: json: cannot unmarshal number into Go struct field AlbumStr.Price of type string
+[receiveEditAlbum] 2023/02/10 01:26:22 receive.go:63: json: cannot unmarshal number into Go struct field AlbumStr.Price of type string
+[receiveEditAlbum] 2023/02/10 01:27:33 receive.go:63: json: cannot unmarshal number into Go struct field AlbumStr.Price of type string
+[editAlbumFromDB] 2023/02/10 01:28:37 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[editAlbumFromDB] 2023/02/10 01:29:12 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[editAlbumFromDB] 2023/02/10 01:29:24 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[editAlbumFromDB] 2023/02/10 01:29:33 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[editAlbumFromDB] 2023/02/10 01:29:49 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[editAlbumFromDB] 2023/02/10 01:30:06 handler.go:62: getAlbumByID 0: sql: no rows in result set
+[receiveEditAlbum] 2023/02/10 01:30:23 receive.go:63: json: cannot unmarshal string into Go struct field AlbumStr.ID of type int64
+[editAlbumFromDB] 2023/02/10 01:32:08 handler.go:77: strconv.ParseFloat: parsing "adg": invalid syntax

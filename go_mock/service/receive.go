@@ -8,6 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type AlbumStr struct {
+	ID     int64
+	Title  string
+	Artist string
+	Price  string
+}
+
 func receivePostAlbum(c *gin.Context) (AlbumInfo, error) {
 	logger.Log.SetPrefix("[receivePostAlbum] ")
 	var newAlbum AlbumInfo
@@ -45,4 +52,17 @@ func receiveGetAlbumById(c *gin.Context) (int64, error) {
 	}
 
 	return id, nil
+}
+
+func receiveEditAlbum(c *gin.Context) (AlbumStr, error) {
+	logger.Log.SetPrefix("[receiveEditAlbum] ")
+	var album AlbumStr
+
+	if err := c.BindJSON(&album); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		logger.Log.Println(err)
+		return album, err
+	}
+
+	return album, nil
 }

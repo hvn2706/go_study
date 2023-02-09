@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- get album by id -->
+        <div class="row">
+            <h3>Get Album By ID</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-1">ID: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-id-get">
+            </div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary" id="get-album-by-id">Get Album By ID</button>
+            </div>
+        </div>
+        <div class="row">
+            <b>Results:</b>
+            <div id="album-by-id-result"></div>
+        </div>
+
+        <!-- add album -->
+        <div class="row">
+            <h3>Add album</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-1">Title: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">Artist: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-artist">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">Price: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-price">
+            </div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary" id="new-album">Add new album</button>
+            </div>
+        </div>
+        <div class="row">
+            <b>Results:</b>
+            <div id="new-album-result"></div>
+        </div>
+
+        <!-- update album by id -->
+        <div class="row">
+            <h3>Update album</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-1">ID: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-id-update">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">New Title: </div>
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Leave blank to keep no change" id="new-album-title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">New Artist: </div>
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Leave blank to keep no change" id="new-album-artist">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">New Price: </div>
+            <div class="col-md-6">
+                <input class="form-control" placeholder="Leave blank to keep no change" id="new-album-price">
+            </div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary" id="update-album">Update album</button>
+            </div>
+        </div>
+        <div class="row">
+            <b>Results:</b>
+            <div id="update-album-result"></div>
+        </div>
+
+        <!-- delete album by id -->
+        <div class="row">
+            <h3>Delete Album By ID</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-1">ID: </div>
+            <div class="col-md-6">
+                <input class="form-control" id="album-id-delete">
+            </div>
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary" id="delete-album-by-id">Delete Album By ID</button>
+            </div>
+        </div>
+        <div class="row">
+            <b>Results:</b>
+            <div id="delete-album-by-id-result"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

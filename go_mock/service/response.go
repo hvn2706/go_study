@@ -58,19 +58,13 @@ func ReturnAlbum(c *gin.Context) {
 }
 
 func EditAlbum(c *gin.Context) {
-	id, receive_err := receiveGetAlbumById(c)
+	newAlbum, receive_err := receiveEditAlbum(c)
 
 	if receive_err != nil {
 		return
 	}
 
-	newAlbum, receive_err := receivePostAlbum(c)
-
-	if receive_err != nil {
-		return
-	}
-
-	editedAlbum, err := editAlbumFromDB(id, newAlbum)
+	editedAlbum, err := editAlbumFromDB(newAlbum)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
