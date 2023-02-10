@@ -1,6 +1,13 @@
 package service
 
 import (
+	"context"
+	"gomock/logger"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,14 +19,34 @@ type AlbumInfo struct {
 
 func RunServer() {
 	router := gin.Default()
-	// router.LoadHTMLGlob("../ClientDemo/*")
-	// router.GET("/", func(c *gin.Context) {
-	// 	c.HTML(http.StatusOK, "index.html", nil)
-	// })
+
 	router.POST("/albums", PostAlbum)
 	router.GET("/albums/:id", ReturnAlbum)
 	router.PUT("/albums/edit", EditAlbum)
 	router.DELETE("/albums/:id", DeleteAlbum)
 
-	router.Run(":8080")
+	srv := &http.Server{
+		Addr:    ":8080",
+		Handler: router,
+	}
+
+	go func() {
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			logger.Log.Fatalf("listen: %s\n", err)
+		}
+	}()
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
+	quit_signal := <-quit
+
+	logger.Log.Println("Shutting down server...")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := srv.Shutdown(ctx); err != nil {
+		logger.Log.Fatal("Server forced to shutdown:", err)
+	}
+
+	logger.Log.Println("Server exiting", quit_signal)
 }
