@@ -1,21 +1,28 @@
 package service
 
 import (
+	"errors"
 	"gomock/database"
 	"gomock/logger"
 	"strconv"
 )
 
 const (
-	ERROR_ID   = -1
-	NIL_TITLE  = ""
-	NIL_ARTIST = ""
-	NIL_PRICE  = ""
+	ERROR_ID      = -1
+	NIL_TITLE     = ""
+	NIL_ARTIST    = ""
+	MIN_PRICE_NUM = 0
+	NIL_PRICE_STR = ""
 )
 
 // Create new album info and add it to the database
-func addAlbumToDB(newAlbum AlbumInfo) (int64, error) {
+func AddAlbumToDB(newAlbum AlbumInfo) (int64, error) {
 	logger.Log.SetPrefix("[addAlbumToDB] ")
+
+	if newAlbum.Title == NIL_TITLE || newAlbum.Artist == NIL_ARTIST || newAlbum.Price < MIN_PRICE_NUM {
+		logger.Log.Println("Invalid album information")
+		return ERROR_ID, errors.New("invalid album information")
+	}
 
 	dbAlbum := database.NewAlbulm(newAlbum.Title, newAlbum.Artist, newAlbum.Price)
 	id, err := database.AddAlbum(dbAlbum)
@@ -30,7 +37,7 @@ func addAlbumToDB(newAlbum AlbumInfo) (int64, error) {
 }
 
 // Validate the album id and delete the album from the database
-func deleteAlbumFromDB(id int64) error {
+func DeleteAlbumFromDB(id int64) error {
 	logger.Log.SetPrefix("[deleteAlbumFromDB] ")
 
 	_, err := database.GetAlbumByID(id)
@@ -52,7 +59,7 @@ func deleteAlbumFromDB(id int64) error {
 }
 
 // Validate the album id and return the album from the database
-func getAlbumFromDB(id int64) (database.Album, error) {
+func GetAlbumFromDB(id int64) (database.Album, error) {
 	logger.Log.SetPrefix("[getAlbumFromDB] ")
 
 	dbAlbum, err := database.GetAlbumByID(id)
@@ -67,7 +74,7 @@ func getAlbumFromDB(id int64) (database.Album, error) {
 }
 
 // Validate the new album information and apply the changes to the database
-func editAlbumFromDB(newAlbumInfo AlbumStr) (database.Album, error) {
+func EditAlbumFromDB(newAlbumInfo AlbumStr) (database.Album, error) {
 	logger.Log.SetPrefix("[editAlbumFromDB] ")
 
 	oldAlbum, err := database.GetAlbumByID(newAlbumInfo.ID)
@@ -85,7 +92,7 @@ func editAlbumFromDB(newAlbumInfo AlbumStr) (database.Album, error) {
 		oldAlbum.Artist = newAlbumInfo.Artist
 	}
 
-	if newAlbumInfo.Price != NIL_PRICE {
+	if newAlbumInfo.Price != NIL_PRICE_STR {
 		converted_price, err := strconv.ParseFloat(newAlbumInfo.Price, 32)
 		if err != nil {
 			logger.Log.Println(err)

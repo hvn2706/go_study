@@ -14,7 +14,7 @@ func PostAlbum(c *gin.Context) {
 		return
 	}
 
-	id, err := addAlbumToDB(newAlbum)
+	id, err := AddAlbumToDB(newAlbum)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -32,7 +32,7 @@ func DeleteAlbum(c *gin.Context) {
 		return
 	}
 
-	err := deleteAlbumFromDB(id)
+	err := DeleteAlbumFromDB(id)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -50,7 +50,7 @@ func ReturnAlbum(c *gin.Context) {
 		return
 	}
 
-	album, err := getAlbumFromDB(id)
+	album, err := GetAlbumFromDB(id)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -68,7 +68,7 @@ func EditAlbum(c *gin.Context) {
 		return
 	}
 
-	editedAlbum, err := editAlbumFromDB(newAlbum)
+	editedAlbum, err := EditAlbumFromDB(newAlbum)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
