@@ -13,6 +13,7 @@ const (
 	NIL_PRICE  = ""
 )
 
+// Create new album info and add it to the database
 func addAlbumToDB(newAlbum AlbumInfo) (int64, error) {
 	logger.Log.SetPrefix("[addAlbumToDB] ")
 
@@ -28,6 +29,7 @@ func addAlbumToDB(newAlbum AlbumInfo) (int64, error) {
 	return id, nil
 }
 
+// Validate the album id and delete the album from the database
 func deleteAlbumFromDB(id int64) error {
 	logger.Log.SetPrefix("[deleteAlbumFromDB] ")
 
@@ -49,6 +51,7 @@ func deleteAlbumFromDB(id int64) error {
 	return nil
 }
 
+// Validate the album id and return the album from the database
 func getAlbumFromDB(id int64) (database.Album, error) {
 	logger.Log.SetPrefix("[getAlbumFromDB] ")
 
@@ -63,6 +66,7 @@ func getAlbumFromDB(id int64) (database.Album, error) {
 	return dbAlbum, nil
 }
 
+// Validate the new album information and apply the changes to the database
 func editAlbumFromDB(newAlbumInfo AlbumStr) (database.Album, error) {
 	logger.Log.SetPrefix("[editAlbumFromDB] ")
 

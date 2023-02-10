@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// receive the album information from the client and respond with the album id
 func PostAlbum(c *gin.Context) {
 	newAlbum, receive_err := receivePostAlbum(c)
 
@@ -23,6 +24,7 @@ func PostAlbum(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, gin.H{"id": id})
 }
 
+// receive the album id from the client and respond with the deleted album id
 func DeleteAlbum(c *gin.Context) {
 	id, receive_err := receiveDeleteAlbumId(c)
 
@@ -40,6 +42,7 @@ func DeleteAlbum(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, gin.H{"id": id})
 }
 
+// receive the album id from the client and respond with the album information
 func ReturnAlbum(c *gin.Context) {
 	id, receive_err := receiveGetAlbumById(c)
 
@@ -57,6 +60,7 @@ func ReturnAlbum(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, album)
 }
 
+// receive the album information from the client and respond with the edited album information
 func EditAlbum(c *gin.Context) {
 	newAlbum, receive_err := receiveEditAlbum(c)
 
