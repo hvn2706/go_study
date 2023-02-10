@@ -24,19 +24,28 @@ func addAlbumToDB(newAlbum AlbumInfo) (int64, error) {
 		return ERROR_ID, err
 	}
 
+	logger.Log.Println("Album added to database with id: ", id)
 	return id, nil
 }
 
 func deleteAlbumFromDB(id int64) error {
 	logger.Log.SetPrefix("[deleteAlbumFromDB] ")
 
-	err := database.DeleteAlbum(id)
+	_, err := database.GetAlbumByID(id)
 
 	if err != nil {
 		logger.Log.Println(err)
 		return err
 	}
 
+	err = database.DeleteAlbum(id)
+
+	if err != nil {
+		logger.Log.Println(err)
+		return err
+	}
+
+	logger.Log.Println("Album deleted from database with id: ", id)
 	return nil
 }
 
@@ -50,6 +59,7 @@ func getAlbumFromDB(id int64) (database.Album, error) {
 		return database.Album{}, err
 	}
 
+	logger.Log.Println("Album retrieved from database with id: ", id)
 	return dbAlbum, nil
 }
 
@@ -88,5 +98,6 @@ func editAlbumFromDB(newAlbumInfo AlbumStr) (database.Album, error) {
 		return database.Album{}, err
 	}
 
+	logger.Log.Println("Album edited in database with id: ", oldAlbum.ID)
 	return oldAlbum, nil
 }

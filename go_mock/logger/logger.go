@@ -2,8 +2,10 @@ package logger
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 var (
@@ -12,7 +14,7 @@ var (
 
 func init() {
 	// set location of log file
-	var logpath = "../log/log.txt"
+	var logpath = fmt.Sprintf("../log/log_%v.txt", time.Now().Format("2006-01-02_15-04-05"))
 
 	flag.Parse()
 	var file, err1 = os.Create(logpath)
