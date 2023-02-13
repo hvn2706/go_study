@@ -22,5 +22,5 @@ func init() {
 		panic(err1)
 	}
 	Log = log.New(file, "", log.LstdFlags|log.Lshortfile)
-	Log.Println("LogFile : " + logpath)
+	Log.Printf("LogFile : %s", logpath)
 }

@@ -14,10 +14,11 @@ import (
 type AlbumInfo struct {
 	Title  string
 	Artist string
-	Price  float32
+	Price  float64
 }
 
 func RunServer() {
+	logger.Log.SetPrefix("[RunServer] ")
 	router := gin.Default()
 
 	router.POST("/albums", PostAlbum)
@@ -45,7 +46,7 @@ func RunServer() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		logger.Log.Fatal("Server forced to shutdown:", err)
+		logger.Log.Fatalf("Server forced to shutdown: %s\n", err)
 	}
 
 	logger.Log.Println("Server exiting", quit_signal)

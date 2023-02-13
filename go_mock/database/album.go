@@ -8,10 +8,10 @@ type Album struct {
 	ID     int64
 	Title  string
 	Artist string
-	Price  float32
+	Price  float64
 }
 
-func NewAlbulm(title, artist string, price float32) Album {
+func NewAlbulm(title, artist string, price float64) Album {
 	return Album{
 		Title:  title,
 		Artist: artist,
