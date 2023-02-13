@@ -22,7 +22,7 @@ func receivePostAlbum(c *gin.Context) (AlbumInfo, error) {
 
 	if err := c.BindJSON(&newAlbum); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		logger.Log.Println(err)
+		logger.Log.Printf("Error binding JSON: %s\n", err)
 		return newAlbum, err
 	}
 
@@ -36,7 +36,7 @@ func receiveDeleteAlbumId(c *gin.Context) (int64, error) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		logger.Log.Println(err)
+		logger.Log.Printf("Error parsing id: %s\n", err)
 		return id, err
 	}
 
@@ -50,7 +50,7 @@ func receiveGetAlbumById(c *gin.Context) (int64, error) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		logger.Log.Println(err)
+		logger.Log.Printf("Error parsing id: %s\n", err)
 		return id, err
 	}
 
@@ -64,7 +64,7 @@ func receiveEditAlbum(c *gin.Context) (AlbumStr, error) {
 
 	if err := c.BindJSON(&album); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		logger.Log.Println(err)
+		logger.Log.Printf("Error binding JSON: %s\n", err)
 		return album, err
 	}
 

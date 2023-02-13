@@ -25,12 +25,12 @@ func Connectdb() {
 	var err error
 	db, err = sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
-		logger.Log.Fatal(err)
+		logger.Log.Fatalf("Error opening database: %s", err)
 	}
 
 	pingErr := db.Ping()
 	if pingErr != nil {
-		logger.Log.Fatal(pingErr)
+		logger.Log.Fatalf("Error pinging database: %s", pingErr)
 	}
 	logger.Log.Println("Database connected!")
 }
