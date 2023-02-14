@@ -1,8 +1,0 @@
-2023/02/10 15:31:23 logger.go:25: LogFile : ../log/log_2023-02-10_15-31-23.txt
-[Connectdb] 2023/02/10 15:31:23 database.go:35: Database connected!
-[addAlbumToDB] 2023/02/10 15:31:23 handler.go:35: Album added to database with id:  38
-[addAlbumToDB] 2023/02/10 15:31:23 handler.go:35: Album added to database with id:  39
-[addAlbumToDB] 2023/02/10 15:31:23 handler.go:23: Invalid album information
-[addAlbumToDB] 2023/02/10 15:31:23 handler.go:23: Invalid album information
-[addAlbumToDB] 2023/02/10 15:31:23 handler.go:35: Album added to database with id:  40
-[addAlbumToDB] 2023/02/10 15:31:23 database.go:39: Closing database connection...
