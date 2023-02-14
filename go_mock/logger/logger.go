@@ -20,11 +20,15 @@ var (
 func Init(test bool, prefix string) {
 	var test_prefix = ""
 	if test {
-		test_prefix = "test"
+		test_prefix = "_test"
+	}
+
+	if prefix != "" {
+		prefix = "_" + prefix
 	}
 
 	// set location of log file
-	var logpath = fmt.Sprintf("../log/%s_%s_log_%v.txt", test_prefix, prefix, time.Now().Format("2006-01-02_15-04-05"))
+	var logpath = fmt.Sprintf("log/%s%slog_%v.txt", test_prefix, prefix, time.Now().Format("2006-01-02_15-04-05"))
 
 	// flag.Parse()
 	var file, err1 = os.Create(logpath)
