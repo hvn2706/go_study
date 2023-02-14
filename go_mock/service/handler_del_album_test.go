@@ -2,11 +2,14 @@ package service_test
 
 import (
 	"gomock/database"
+	"gomock/logger"
 	"gomock/service"
 	"testing"
 )
 
 func TestDeleteAlbumFromDB(t *testing.T) {
+	// Init logger
+	logger.Init(true, "delete_album")
 	// Connect to the database
 	database.Connectdb()
 	defer database.CloseDB()

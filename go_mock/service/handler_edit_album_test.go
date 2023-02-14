@@ -2,6 +2,7 @@ package service_test
 
 import (
 	"gomock/database"
+	"gomock/logger"
 	"gomock/service"
 	"math"
 	"testing"
@@ -33,6 +34,8 @@ func createRegularAlbums(t *testing.T) []int64 {
 }
 
 func TestEditAlbumFromDB(t *testing.T) {
+	// Init logger
+	logger.Init(true, "edit_album")
 	// Connect to the database
 	database.Connectdb()
 	defer database.CloseDB()

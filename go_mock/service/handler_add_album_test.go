@@ -2,12 +2,16 @@ package service_test
 
 import (
 	"gomock/database"
+	"gomock/logger"
 	"gomock/service"
+	"math"
 	"testing"
 )
 
 // Test the addAlbumToDB function
 func TestAddAlbumToDB(t *testing.T) {
+	// Init logger
+	logger.Init(true, "add_album")
 	// Connect to the database
 	database.Connectdb()
 	defer database.CloseDB()
@@ -88,7 +92,7 @@ func TestAddAlbumToDB(t *testing.T) {
 			continue
 		}
 
-		if dbAlbum.Price-newAlbum.Price > service.ACCEPTED_PRICE_ERROR {
+		if math.Abs(dbAlbum.Price-newAlbum.Price) > service.ACCEPTED_PRICE_ERROR {
 			t.Fatalf("Album was not added correctly to the database. WRONG PRICE. Expected: %f, Got: %f\n", newAlbum.Price, dbAlbum.Price)
 			continue
 		}
