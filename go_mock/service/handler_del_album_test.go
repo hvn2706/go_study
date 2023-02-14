@@ -55,7 +55,7 @@ func TestDeleteAlbumFromDB(t *testing.T) {
 		// Add the album to the database
 		id, _ := service.AddAlbumToDB(newAlbum)
 
-		if newAlbum.Title == "" || newAlbum.Artist == "" || newAlbum.Price < 0 {
+		if newAlbum.Title == service.NIL_TITLE || newAlbum.Artist == service.NIL_ARTIST || newAlbum.Price < service.MIN_PRICE_NUM {
 			if id != service.ERROR_ID {
 				t.Fatalf("[Testcase: %d] Returned ID is not ERROR_ID for album: %v\n", i, newAlbum)
 				continue
