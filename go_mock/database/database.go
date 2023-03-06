@@ -12,8 +12,6 @@ var db *sql.DB
 
 // Connectdb connects to the database
 func Connectdb() {
-	logger.Log.SetPrefix("[Connectdb] ")
-
 	cfg := mysql.Config{
 		User:   os.Getenv("DBUSER"),
 		Passwd: os.Getenv("DBPASS"),
@@ -25,14 +23,14 @@ func Connectdb() {
 	var err error
 	db, err = sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
-		logger.Log.Fatalf("Error opening database: %s", err)
+		logger.FatalLogger.Fatalf("Error opening database: %s", err)
 	}
 
 	pingErr := db.Ping()
 	if pingErr != nil {
-		logger.Log.Fatalf("Error pinging database: %s", pingErr)
+		logger.FatalLogger.Fatalf("Error pinging database: %s", pingErr)
 	}
-	logger.Log.Println("Database connected!")
+	logger.InfoLogger.Println("Database connected!")
 }
 
 func CloseDB() {

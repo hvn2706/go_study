@@ -1,21 +1,17 @@
-module gomock/main
+module gomock
 
 go 1.19
 
-replace gomock/database => ../database
-
 require (
-	gomock/database v0.0.0-00010101000000-000000000000
-	gomock/service v0.0.0-00010101000000-000000000000
+	github.com/gin-gonic/gin v1.8.2
+	github.com/go-sql-driver/mysql v1.7.0
 )
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.8.2 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
-	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/goccy/go-json v0.9.11 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
@@ -28,11 +24,6 @@ require (
 	golang.org/x/net v0.4.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
-	gomock/logger v0.0.0-00010101000000-000000000000 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
-
-replace gomock/service => ../service
-
-replace gomock/logger => ../logger

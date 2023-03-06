@@ -18,7 +18,6 @@ type AlbumInfo struct {
 }
 
 func RunServer() {
-	logger.Log.SetPrefix("[RunServer] ")
 	router := gin.Default()
 
 	router.POST("/albums", PostAlbum)
@@ -33,7 +32,7 @@ func RunServer() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Log.Fatalf("listen: %s\n", err)
+			logger.FatalLogger.Fatalf("listen: %s\n", err)
 		}
 	}()
 
@@ -46,8 +45,8 @@ func RunServer() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		logger.Log.Fatalf("Server forced to shutdown: %s\n", err)
+		logger.FatalLogger.Fatalf("Server forced to shutdown: %s\n", err)
 	}
 
-	logger.Log.Println("Server exiting", quit_signal)
+	logger.InfoLogger.Printf("Server exiting: %v\n", quit_signal)
 }
